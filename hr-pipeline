@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    
+    parameters {
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/AshishSingh-30/hr', description: 'URL of the Git repository')
+        // string(name: 'SERVER_NAME', defaultValue: 'app2.actifyzone.com', description: 'Server name for NGINX')
+        // string(name: 'NGINX_WEB_ROOT', defaultValue: '/home/Python4/jobportal', description: 'NGINX web root directory')
+    }
+     tools {
+        nodejs 'NodeJS 22' // Ensure you have a NodeJS tool configured in Jenkins
+    }
+
+     environment {
+        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/Java2_key.pem' // Update with your actual key path
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // git branch: 'main', url: params.REPO_URL
+                git branch: 'main', credentialsId: 'DEX', url: 'git@github.com:AshishSingh-30/dextero-actify.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'pwd'
+                sh 'npm i'
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sshagent(['Java2']) {
+                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -rf /home/Java2/HR2"'
+                }
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/HR2'
+
+               
+            }
+        }
+        
+        stage('Test VM'){
+            steps{
+                sshagent(['Java2']) {
+                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "ls"'
+                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "sudo systemctl restart nginx"'
+               }
+            }
+        }
+    }
+}
