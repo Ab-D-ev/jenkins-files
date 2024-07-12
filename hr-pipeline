@@ -54,6 +54,8 @@ pipeline {
         success {
              emailext body: '''<html><body><h2>HR Portal - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
+                        <h2>Deployed on hr1.actifyzone.com</h2>
+                        <br/>
                        <h3><b> Check console <a href="$BUILD_URL">output</a> to view full results.</b></h3><br/>
                         <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
                         <br/>
