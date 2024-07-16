@@ -52,9 +52,9 @@ pipeline {
     }
     post {
         success {
-             emailext body: '''<html><body><h2>HR Portal - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+             emailext body: '''<html><body><h2>HR Portal UAT - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
-                        <h2>Deployed on hr1.actifyzone.com</h2>
+                        <h2>Deployed on hr2.actifyzone.com</h2>
                         <br/>
                        <h3><b> Check console <a href="$BUILD_URL">output</a> to view full results.</b></h3><br/>
                         <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
@@ -67,7 +67,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
-             subject:'HR Deployed Successfully - $PROJECT_NAME',
+             subject:'HR UAT Deployed Successfully - $PROJECT_NAME',
              to: 'abdallahq989@gmail.com , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
              mimeType: 'text/html'
         }
