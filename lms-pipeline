@@ -18,7 +18,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // git branch: 'main', url: params.REPO_URL
-                git branch: 'main', credentialsId: 'DEX', url: 'git@github.com:AshishSingh-30/CRM-Portal.git'
+                git branch: 'main', credentialsId: 'DEX', url: 'git@github.com:AshishSingh-30/LMS.git'
             }
         }
         
@@ -85,7 +85,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
-                     subject:'CRM Test Deployment failed :$PROJECT_NAME' , 
+                     subject:'LMS Deployment failed :$PROJECT_NAME' , 
                      to: 'abdallahq989@gmail.com , ashish.singh@dextero.in',
                      mimeType: 'text/html'
         }
