@@ -52,7 +52,7 @@ pipeline {
     }
     post {
         success {
-             emailext body: '''<html><body><h2>CRM Test - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+             emailext body: '''<html><body><h2>LMS PROD - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
                         <h2>Deployed on lms.actifyzone.com</h2>
                         <br/>
