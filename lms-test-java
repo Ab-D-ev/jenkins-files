@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    
+    tools {
+        // Specify the Maven version configured in Global Tool Configuration
+        maven 'Maven 3.9.8'
+    }
+    
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // git branch: 'main', url: params.REPO_URL
+                git credentialsId: 'jenkins2', url: 'git@github.com:sidd3025/lms_test.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
