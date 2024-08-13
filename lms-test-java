@@ -1,23 +1,40 @@
 pipeline {
     agent any
-    
+
     tools {
         // Specify the Maven version configured in Global Tool Configuration
         maven 'Maven 3.9.8'
     }
-    
-    
+
+     environment {
+        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/Java2_key.pem' // Update with your actual key path
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                // git branch: 'main', url: params.REPO_URL
                 git credentialsId: 'jenkins2', url: 'git@github.com:sidd3025/lms_test.git'
             }
         }
-        stage('Build'){
-            steps{
+        stage('Build') {
+            steps {
                 sh 'mvn clean package'
             }
+        }
+        stage('Deploy') {
+            steps {
+               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/lms-java-application/target/LearningPortal.war Java2@20.235.243.236:/home/Java2/lms-test.war'
+
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment completed successfully.'
+        }
+        failure {
+            echo 'Deployment failed.'
         }
     }
 }
