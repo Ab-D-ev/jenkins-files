@@ -25,7 +25,7 @@ pipeline {
             steps {
                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/lms-java-application/target/LearningPortal.war Java2@20.235.243.236:/home/Java2/lms-test.war'
                 sshagent(['Java2']) {
-                        sh 'sudo mv /home/Java2/lms-test.war /opt/tomcat/webapps/lms-test.war '
+                        sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "sudo mv/home/Java2/lms-test.war /opt/tomcat/webapps/lms-test.war"
                     }
 
             }
