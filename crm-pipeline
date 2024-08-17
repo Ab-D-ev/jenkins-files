@@ -35,7 +35,7 @@ pipeline {
                 sshagent(['Java3']) {
                 sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo rm -r /var/www/html/crm-API"'
                 }
-                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist java3@20.244.110.102:/home/ubuntu/crm-API'
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist java3@20.244.110.102:/home/ubuntu/'
                 
                
             }
