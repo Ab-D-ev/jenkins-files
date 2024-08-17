@@ -21,20 +21,19 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //        sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/lms-java-application/target/LearningPortal.war Java2@20.235.243.236:/home/Java2/lms-test.war'
-        //         sshagent(['Java2']) {
-        //                 sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "sudo mv /home/Java2/lms-test.war /opt/tomcat/webapps/lms-test.war" '
-        //             }
+        stage('Deploy') {
+            steps {
+               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/shop-java-test-pipeline/target/ShopPortal.war Java2@20.235.243.236:/home/Java2/hotel-test.war'
+                sshagent(['Java2']) {
+                    }
 
-        //     }
-        // }
+            }
+        }
     }
 
    post {
         success {
-             emailext body: '''<html><body><h2>LMS Test WAR Deployed - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+             emailext body: '''<html><body><h2>Shop Test WAR Deployed - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
                         <h2>Deployed on apis.actifyzone.com/lms-test</h2>
                         <br/>
@@ -49,8 +48,8 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
-             subject:'LMS Test WAR Deployed Successfully - $PROJECT_NAME',
-             to: 'siddhanth.jadhav@dextero.in , abdallah.kammruddin@dextero.in ',
+             subject:'Shop Test WAR Deployed Successfully - $PROJECT_NAME',
+             to: 'omkar.more@dextero.in , abdallah.kammruddin@dextero.in ',
              mimeType: 'text/html'
         }
         failure {
@@ -68,7 +67,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'LMS WAR Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallahq989@gmail.com , siddhanth.jadhav@dextero.in',
+                     to: 'abdallah.kammruddin@dextero.in , omkar.more@dextero.in',
                      mimeType: 'text/html'
         }
     }
