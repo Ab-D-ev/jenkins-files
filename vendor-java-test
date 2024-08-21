@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'Omkar', url: 'git@github.com:OmkarMore-1999/SAPPortal.git'
+                git branch: 'main', credentialsId: 'Omkar', url: 'git@github.com:OmkarMore-1999/SAPPortal.git'
             }
         }
         stage('Build') {
