@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'manju', url: 'git@github.com:manju35/HR-Portal-UAT.git''
+                git credentialsId: 'manju', url: 'git@github.com:manju35/HR-Portal-UAT.git'
             }
         }
         stage('Build') {
