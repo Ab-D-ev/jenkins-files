@@ -1,19 +1,20 @@
 pipeline {
     agent any
     
+  
      tools {
         nodejs 'NodeJS 22' // Ensure you have a NodeJS tool configured in Jenkins
     }
 
      environment {
-        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/Java2_key.pem' // Update with your actual key path
+        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/Python4_key.pem' // Update with your actual key path
     }
     
     stages {
         stage('Checkout') {
             steps {
                 // git branch: 'main', url: params.REPO_URL
-                git branch: 'main', credentialsId: 'Omkar', url: 'git@github.com:OmkarMore-1999/savysuchy.git'
+                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/Food-studio.git'
             }
         }
         
@@ -27,29 +28,29 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                sshagent(['Java2']) {
-                // sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -r /home/Java2/Ecom-Test"'
+                sshagent(['Python4']) {
+                sh 'ssh -o StrictHostKeyChecking=no Python4@4.240.104.27 "rm -r /home/Python4/workflow-test"'
                 }
-                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r build Java2@20.235.243.236:/home/Java2/Ecom-Test'
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Python4@4.240.104.27:/home/Python4/feedback-new'
 
                
             }
         }
         
-        stage('Restart VM'){
+        stage('Test VM'){
             steps{
-                sshagent(['Java2']) {
-                // sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "ls"'
-                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "sudo systemctl restart nginx"'
+                sshagent(['Python4']) {
+                sh 'ssh -o StrictHostKeyChecking=no Python4@4.240.104.27 "ls"'
+                sh 'ssh -o StrictHostKeyChecking=no Python4@4.240.104.27 "sudo systemctl restart nginx"'
                }
             }
         }
     }
     post {
         success {
-             emailext body: '''<html><body><h2>Ecommerce Test  - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+             emailext body: '''<html><body><h2>Workflow Test App - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
-                        <h2>Deployed on shop.actifyzone.com</h2>
+                        <h2>Deployed on workflows2.actifyzone.com</h2>
                         <br/>
                        <h3><b> Check console <a href="$BUILD_URL">output</a> to view full results.</b></h3><br/>
                         <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
@@ -62,12 +63,12 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
-             subject:'Ecommerce Deployed Successfully - $PROJECT_NAME',
-             to: 'omkar.more@dextero.in , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
+             subject:'Workflow Test App Deployed Successfully - $PROJECT_NAME',
+             to: 'sibananda.sahu@dextero.in, abdallah.kammruddin@dextero.in',
              mimeType: 'text/html'
         }
         failure {
-            emailext body: '''<html><body><h2>Ecommerce - Build # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+            emailext body: '''<html><body><h2>Workflow Test App - Build # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
                        <b> Check console <a href="$BUILD_URL">output</a> to view full results.</b><br/>
                         <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
@@ -80,8 +81,8 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
-                     subject:'Ecommerce Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallahq989@gmail.com , ashish.singh@dextero.in , omkar.more@dextero.in',
+                     subject:'Workflow Test App Deployment failed :$PROJECT_NAME' , 
+                     to: 'abdallahq989@gmail.com , sibananda.sahu@dextero.in',
                      mimeType: 'text/html'
         }
     }
