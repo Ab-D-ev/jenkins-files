@@ -18,7 +18,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // git branch: 'main', url: params.REPO_URL
-                git branch: 'main', credentialsId: 'DEX', url: 'git@github.com:AshishSingh-30/hr.git'
+                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/hr.git'
             }
         }
         
