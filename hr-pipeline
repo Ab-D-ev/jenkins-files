@@ -11,7 +11,7 @@ pipeline {
     }
 
      environment {
-        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/Java2_key.pem' // Update with your actual key path
+        SSH_KEY_PATH = '/mnt/c/Users/Admin/Downloads/java3.pem' // Update with your actual key path
     }
     
     stages {
@@ -32,19 +32,19 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                sshagent(['Java2']) {
-                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -rf /home/Java2/HR2"'
+                sshagent(['Java3']) {
+                sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo rm -r /var/www/html/hr-api"'
                 }
-                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/HR2'
-
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist java3@20.244.110.102:/home/java3/hr-api'
+                    
                
             }
         }
         
         stage('Test VM'){
             steps{
-                sshagent(['Java2']) {
-                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "ls"'
+                sshagent(['Java3']) {
+                sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo mv /home/java3/hr-api /var/www/html/hr-api"'
                 sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "sudo systemctl restart nginx"'
                }
             }
