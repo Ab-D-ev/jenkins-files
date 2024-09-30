@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // git branch: 'main', url: params.REPO_URL
-                git branch: 'main', credentialsId: 'DEX', url: 'git@github.com:sibananda485/vendorPortal.git'
+                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/vendorPortal.git'
             }
         }
         
@@ -29,9 +29,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['Java2']) {
-                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -rf /home/Java2/vendor"'
+                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -r /home/Java2/dist"'
                 }
-                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/vendor'
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/dist'
 
                
             }
@@ -50,7 +50,7 @@ pipeline {
         success {
              emailext body: '''<html><body><h2>Vendor Portal - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
                         <br/>
-                        <h2>Deployed on vp1.actifyzone.com</h2>
+                        <h2>Deployed on app4.actifyzone.com</h2>
                         <br/>
                        <h3><b> Check console <a href="$BUILD_URL">output</a> to view full results.</b></h3><br/>
                         <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
