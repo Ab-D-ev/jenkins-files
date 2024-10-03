@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/centralized-test-java/target/Centralize.war java3@20.244.110.102:/home/java3/centralize-test.war'
+               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/centralize-test-java/target/Centralize.war java3@20.244.110.102:/home/java3/centralize-test.war'
                 sshagent(['Java3']) {
                     sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo mv /home/java3/centralize-test.war /opt/tomcat/webapps/centralize-test.war"'
                 }
