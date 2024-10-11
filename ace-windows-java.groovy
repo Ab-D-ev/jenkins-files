@@ -26,8 +26,9 @@ pipeline {
                 script {
                     // Using sshpass to SCP the file with the password
                     sh '''
-                        sshpass -p "${SERVER_PASSWORD}" scp -o StrictHostKeyChecking=no  ACEPortal1@98.70.57.5:\"C:/Program\ Files/Apache\ Software\ Foundation/Tomcat\ 9.0/webapps/\"
-                    '''
+                        sshpass -p "${SERVER_PASSWORD}" scp -o StrictHostKeyChecking=no \
+                        ACEPortal1@98.70.57.5:"C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
+                        '''
                     
 
                 }
