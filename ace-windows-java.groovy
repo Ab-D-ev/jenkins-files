@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        // Specify the Maven version configured in Global Tool Configuration
+        maven 'Maven 3.9.8'
+    }
      environment {
         // SERVER_USER = 'ACEPortal1'
         // SERVER_IP = '98.70.57.5'
