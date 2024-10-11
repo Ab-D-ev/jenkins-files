@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'Omkar', 'git@github.com:OmkarMore-1999/AcePortalAPI.git' 
+                git branch: 'main', credentialsId: 'Omkar', url: 'git@github.com:OmkarMore-1999/AcePortalAPI.git' 
             }
         }
         
