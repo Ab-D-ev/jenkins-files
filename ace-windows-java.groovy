@@ -34,7 +34,7 @@ pipeline {
                     //     sshpass -p "${SERVER_PASSWORD}" scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sap-vendor-java-test/target/ROOT.war ACEPortal1@98.70.57.5:"C:/Program\ Files/Apache\ Software\ Foundation/Tomcat\ 9.0/webapps/"
                     //     '''
                     sh """
-                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sap-vendor-java-test/target/ROOT.war ACEPortal1@98.70.57.5::"\"C:/Program Files/Apache Software Foundation/\""
+                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sap-vendor-java-test/target/ROOT.war ACEPortal1@98.70.57.5::"\"C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/\""
                         """
 
 
