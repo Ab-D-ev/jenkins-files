@@ -49,7 +49,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre></body></html>''',
                     subject: 'HR Production WAR Deployed Successfully - $PROJECT_NAME',
-                    to: 'siddhanth.jadhav@dextero.in, abdallah.kammruddin@dextero.in',
+                    to: 'manju.nishad@dextero.in, abdallah.kammruddin@dextero.in',
                     mimeType: 'text/html'
             }
         }
@@ -68,7 +68,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre><b>--LOG-END--</b></body></html>''',
                     subject: 'HR Production WAR Deployment failed : $PROJECT_NAME',
-                    to: 'abdallahq989@gmail.com, siddhanth.jadhav@dextero.in',
+                    to: 'abdallahq989@gmail.com, manju.nishad@dextero.in',
                     mimeType: 'text/html'
             }
         }
