@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // git branch: 'main', url: params.REPO_URL
-                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/CRM-Portal.git'
+                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/ug-sap.git'
             }
         }
         
