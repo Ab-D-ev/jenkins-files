@@ -35,7 +35,7 @@ pipeline {
                     //     sshpass -p "${SERVER_PASSWORD}" scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sap-vendor-java-test/target/ROOT.war ACEPortal1@98.70.57.5:"C:/Program\ Files/Apache\ Software\ Foundation/Tomcat\ 9.0/webapps/"
                     //     '''
                     sh """
-                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/ACE/"' 
+                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/"' 
                         """
 
 
