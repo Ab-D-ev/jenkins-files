@@ -31,11 +31,11 @@ pipeline {
             steps {
                 script {
                     // Using sshpass to SCP the file with the password
-                    // sh '''
-                    //     sshpass -p "${SERVER_PASSWORD}" scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/sap-vendor-java-test/target/ROOT.war ACEPortal1@98.70.57.5:"C:/Program\ Files/Apache\ Software\ Foundation/Tomcat\ 9.0/webapps/"
-                    //     '''
                     sh """
-                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/"' 
+                        sshpass -p '${SERVER_PASSWORD}' ssh -o StrictHostKeyChecking=no ACEPortal1@98.70.57.5 'powershell -Command "Remove-Item -Path \'C:/Users/ACEPortal1/Downloads/ACE/*\' -Recurse -Force"'
+                        """
+                    sh """
+                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/ACE/"' 
                         """
 
 
