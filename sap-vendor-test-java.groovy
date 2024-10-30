@@ -23,9 +23,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/sap-vendor-java-test/target/VendorPortal.war java3@20.244.110.102:/home/java3/vendor-test.war'
+               sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} /var/lib/jenkins/workspace/sap-vendor-java-test/target/VendorPortal.war java3@20.244.110.102:/home/java3/UG-SAP-TEST.war'
                 sshagent(['Java3']) {
-                    sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo mv /home/java3/vendor-test.war /opt/tomcat/webapps/vendor-test.war"'
+                    sh 'ssh -o StrictHostKeyChecking=no java3@20.244.110.102 "sudo mv /home/java3/UG-SAP-TEST.war /opt/tomcat/webapps/UG-SAP-TEST.war"'
                 }
             }
         }
