@@ -33,9 +33,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['Java2']) {
-                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -r /home/Java2/job-api"'
+                sh 'ssh -o StrictHostKeyChecking=no Java2@20.235.243.236 "rm -r /home/Java2/job-prod1"'
                 }
-                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/job-api'
+                sh 'scp -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} -r dist Java2@20.235.243.236:/home/Java2/job-prod1'
 
                
             }
