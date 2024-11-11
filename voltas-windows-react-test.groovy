@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/ace-portal.git' 
+                git branch: 'main', credentialsId: 'Siba', url: 'git@github.com:sibananda485/approvalSystem.git' 
             }
         }
         
@@ -32,10 +32,10 @@ pipeline {
                 script {
                     // Using sshpass to SCP the file with the password
                     sh """
-                        sshpass -p '${SERVER_PASSWORD}' ssh -o StrictHostKeyChecking=no ACEPortal1@98.70.57.5 'powershell -Command "Remove-Item -Path \'C:/Users/ACEPortal1/Downloads/ACE/*\' -Recurse -Force"'
+                        sshpass -p '${SERVER_PASSWORD}' ssh -o StrictHostKeyChecking=no ACEPortal1@98.70.57.5 'powershell -Command "Remove-Item -Path \'C:/Users/ACEPortal1/Downloads/VOLTAS/*\' -Recurse -Force"'
                         """
                     sh """
-                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/ACE/"' 
+                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/VOLTAS/"' 
                         """
 
 
@@ -48,8 +48,44 @@ pipeline {
     }
     
     post {
-        always {
-            cleanWs()
+        success {
+            script {
+                emailext body: '''<html><body><h2>Voltas React (JAVA) Deployed - Version # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+                        <br/>
+                        <h2>Deployed on workflows3.actifyzone.com</h2>
+                        <br/>
+                        <h3><b>Check console <a href="$BUILD_URL">output</a> to view full results.</b></h3><br/>
+                        <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
+                        <br/>
+                        --<br/>
+                        Following is the last 50 lines of the log.<br/>
+                        <br/>
+                        <b>--LOG-BEGIN--</b><br/>
+                        <pre style='line-height: 22px; display: block; color: #333; font-family: Monaco,Menlo,Consolas,"Courier New",monospace; padding: 10.5px; margin: 0 0 11px; font-size: 13px; word-break: break-all; word-wrap: break-word; white-space: pre-wrap; background-color: #f5f5f5; border: 1px solid #ccc; border: 1px solid rgba(0,0,0,.15); -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;'>
+                        ${BUILD_LOG, maxLines=50, escapeHtml=true}
+                        </pre></body></html>''',
+                    subject: 'Voltas React (JAVA) Deployed Successfully - $PROJECT_NAME',
+                    to: 'sibananda.sahu@dextero.in, abdallah.kammruddin@dextero.in',
+                    mimeType: 'text/html'
+            }
+        }
+        failure {
+            script {
+                emailext body: '''<html><body><h2>Voltas React (JAVA) Failed - Build # $BUILD_NUMBER - Deployment $BUILD_STATUS.</h2><br/>
+                        <br/>
+                        <b>Check console <a href="$BUILD_URL">output</a> to view full results.</b><br/>
+                        <b><i>If you cannot connect to the build server, check the attached logs.</i></b><br/>
+                        <br/>
+                        --<br/>
+                        Following is the last 50 lines of the log.<br/>
+                        <br/>
+                        <b>--LOG-BEGIN--</b><br/>
+                        <pre style='line-height: 22px; display: block; color: #333; font-family: Monaco,Menlo,Consolas,"Courier New",monospace; padding: 10.5px; margin: 0 0 11px; font-size: 13px; word-break: break-all; word-wrap: break-word; white-space: pre-wrap; background-color: #f5f5f5; border: 1px solid #ccc; border: 1px solid rgba(0,0,0,.15); -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;'>
+                        ${BUILD_LOG, maxLines=50, escapeHtml=true}
+                        </pre><b>--LOG-END--</b></body></html>''',
+                    subject: 'Voltas React (JAVA) Deployment failed : $PROJECT_NAME',
+                    mimeType: 'text/html'
+            }
         }
     }
 }
