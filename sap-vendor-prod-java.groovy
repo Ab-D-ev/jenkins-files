@@ -68,7 +68,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre><b>--LOG-END--</b></body></html>''',
                     subject: 'SAP Vendor WAR Deployment failed : $PROJECT_NAME',
-                    to: 'abdallahq989@gmail.com, omkar.more@dextero.in',
+                    to: 'abdallah.kammruddin@dextero.in, omkar.more@dextero.in',
                     mimeType: 'text/html'
             }
         }

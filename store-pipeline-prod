@@ -86,7 +86,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'Store Production Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallahq989@gmail.com , ashish.singh@dextero.in, kurmavanshi81@gmail.com',
+                     to: 'abdallah.kammruddin@dextero.in , ashish.singh@dextero.in, kurmavanshi81@gmail.com',
                      mimeType: 'text/html'
         }
     }

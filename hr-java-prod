@@ -68,7 +68,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre><b>--LOG-END--</b></body></html>''',
                     subject: 'HR Production WAR Deployment failed : $PROJECT_NAME',
-                    to: 'abdallahq989@gmail.com, manju.nishad@dextero.in',
+                    to: 'abdallah.kammruddin@dextero.in, manju.nishad@dextero.in',
                     mimeType: 'text/html'
             }
         }

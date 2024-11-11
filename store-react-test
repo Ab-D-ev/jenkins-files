@@ -82,7 +82,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'Store Test App Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallahq989@gmail.com , kurmavanshi81@gmail.com , sibananda.sahu@dextero.in',
+                     to: 'abdallah.kammruddin@dextero.in , kurmavanshi81@gmail.com , sibananda.sahu@dextero.in',
                      mimeType: 'text/html'
         }
     }

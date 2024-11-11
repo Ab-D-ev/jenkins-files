@@ -68,7 +68,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
              subject:'CRM Deployed Successfully - $PROJECT_NAME',
-             to: 'abdallahq989@gmail.com , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
+             to: 'abdallah.kammruddin@dextero.in , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
              mimeType: 'text/html'
         }
         failure {
@@ -86,7 +86,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'CRM Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallahq989@gmail.com , ashish.singh@dextero.in',
+                     to: 'abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
                      mimeType: 'text/html'
         }
     }

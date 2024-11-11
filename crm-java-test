@@ -68,7 +68,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre><b>--LOG-END--</b></body></html>''',
                     subject: 'CRM Test WAR Deployment failed : $PROJECT_NAME',
-                    to: 'abdallahq989@gmail.com, siddhanth.jadhav@dextero.in',
+                    to: 'abdallah.kammruddin@dextero.in, siddhanth.jadhav@dextero.in',
                     mimeType: 'text/html'
             }
         }

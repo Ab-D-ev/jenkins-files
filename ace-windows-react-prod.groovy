@@ -84,7 +84,7 @@ pipeline {
                         ${BUILD_LOG, maxLines=50, escapeHtml=true}
                         </pre><b>--LOG-END--</b></body></html>''',
                     subject: 'Ace Windows React Deployment failed : $PROJECT_NAME',
-                    to: 'abdallahq989@gmail.com, sibananda.sahu@dextero.in',
+                    to: 'abdallah.kammruddin@dextero.in, sibananda.sahu@dextero.in',
                     mimeType: 'text/html'
             }
         }
