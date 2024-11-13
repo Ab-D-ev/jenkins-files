@@ -35,7 +35,7 @@ pipeline {
                         sshpass -p '${SERVER_PASSWORD}' ssh -o StrictHostKeyChecking=no ACEPortal1@98.70.57.5 'powershell -Command "Remove-Item -Path \'C:/Users/ACEPortal1/Downloads/VOLTAS/*\' -Recurse -Force"'
                         """
                     sh """
-                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/ace-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/VOLTAS/"' 
+                            sshpass -p '${SERVER_PASSWORD}' scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/voltas-windows-react-test/dist ACEPortal1@98.70.57.5:'"C:/Users/ACEPortal1/Downloads/VOLTAS/"' 
                         """
 
 
