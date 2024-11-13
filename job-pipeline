@@ -68,7 +68,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
              subject:'Job Portal Deployed Successfully - $PROJECT_NAME',
-             to: 'manju.nishad@dextero.in , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
+             to: 'manju.nishad@dextero.in , abdallah.kammruddin@dextero.in , sibananda.sahu@dextero.in',
              mimeType: 'text/html'
         }
         failure {
@@ -86,7 +86,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'Job Portal Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallah.kammruddin@dextero.in , ashish.singh@dextero.in , manju.nishad@dextero.in',
+                     to: 'abdallah.kammruddin@dextero.in , sibananda.sahu@dextero.in , manju.nishad@dextero.in',
                      mimeType: 'text/html'
         }
     }

@@ -63,7 +63,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
              subject:'Ecommerce Deployed Successfully - $PROJECT_NAME',
-             to: 'omkar.more@dextero.in , abdallah.kammruddin@dextero.in , ashish.singh@dextero.in',
+             to: 'omkar.more@dextero.in , abdallah.kammruddin@dextero.in , sibananda.sahu@dextero.in',
              mimeType: 'text/html'
         }
         failure {
@@ -81,7 +81,7 @@ pipeline {
                         </pre>
                         <b>--LOG-END--</b></body></html>''',
                      subject:'Ecommerce Deployment failed :$PROJECT_NAME' , 
-                     to: 'abdallah.kammruddin@dextero.in , ashish.singh@dextero.in , omkar.more@dextero.in',
+                     to: 'abdallah.kammruddin@dextero.in , sibananda.sahu@dextero.in , omkar.more@dextero.in',
                      mimeType: 'text/html'
         }
     }
